@@ -1,2 +1,2 @@
 ## DESCRIPTION
-this is my dashboard project 
+This is my dashboard project 
