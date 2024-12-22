@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argon Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#111c44',
+                            secondary: '#051139',
+                        },
+                        light: {
+                            bg: '#11cdef',
+                            secondary: '#ffffff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwind">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
+    <div class="flex">
+        <aside class="fixed top-0 left-0 w-64 h-full bg-light-secondary dark:bg-dark-secondary border-r border-none p-4 transition-colors md:block hidden" id="sidebar">
+            <div class="flex items-center gap-2 pb-6">
+                <div class="h-10 bg-gray-700 rounded overflow-hidden">
+                    <img src="logo.jpeg" alt="Logo" class="h-full w-auto text-stone-950 bg-[#111c44]">
+                </div>
+                <span class="text-lg font-semibold">Argon Dashboard 2</span>
+            </div>
+    
+            <nav>
+                <ul class="space-y-2">
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-gray-500">
+                        desktop_windows
+                        </span>Dashboard</a></li>
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-orange-700">calendar_month</span>Tables</a></li>
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-green-600">credit_card</span>Billing</a></li>
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-blue-600">token</span>Virtual Reality</a></li>
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-pink-900">
+                        language
+                        </span>RTL</a></li>
+                </ul>
+    
+                <h3 class="mt-6 mb-4 text-xs font-bold uppercase text-gray-500 dark:text-gray-400 px-6">Account Pages</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-gray-700">
+                        person
+                        </span>Profile</a></li>
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-orange-400">
+                        library_books
+                        </span>Sign In</a></li>
+                    <li><a href="#" class="flex items-center gap-3 px-6 py-2 text-gray-600 dark:text-white rounded hover:bg-[#11cdef] dark:hover:bg-[#111c44]"><span class="material-icons-sharp text-blue-400">
+                        logout
+                        </span>Sign Up</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <main class="ml-64 p-6">
+        <header class="flex flex-col md:flex-row justify-between items-center border-b border-none pb-4 mb-8">
+            <div class="text-white dark:text-white text-lg font-semibold">Dashboard</div>
+            <div class="flex items-center gap-4 w-full md:w-auto mt-4 md:mt-0">
+                <div class="relative flex-grow">
+                    <input type="search" placeholder="Type here..." class="w-full md:w-64 p-2 pl-8 bg-light-secondary dark:bg-dark-secondary border border-white rounded-3xl dark:border-white rounded text-white dark:text-white transition-colors duration-300">
+                </div>
+                <button id="themeToggle" class="p-2 rounded-full bg-light-secondary dark:bg-dark-secondary text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-blue-800 transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+            <div class="p-4 bg-light-secondary dark:bg-dark-secondary rounded transition-colors duration-300">
+                <h4 class="text-sm text-gray-600 dark:text-gray-400">TODAY'S MONEY</h4>
+                <p class="text-2xl font-semibold">$53,000</p>
+                <span class="text-sm text-green-400">+55% since yesterday</span>
+            </div>
+            <div class="p-4 bg-light-secondary dark:bg-dark-secondary rounded transition-colors duration-300">
+                <h4 class="text-sm text-gray-600 dark:text-gray-400">TODAY'S USERS</h4>
+                <p class="text-2xl font-semibold">2,300</p>
+                <span class="text-sm text-green-400">+3% since last week</span>
+            </div>
+            <div class="p-4 bg-light-secondary dark:bg-dark-secondary rounded transition-colors duration-300">
+                <h4 class="text-sm text-gray-600 dark:text-gray-400">NEW CLIENTS</h4>
+                <p class="text-2xl font-semibold">+3,462</p>
+                <span class="text-sm text-red-400">-2% since last quarter</span>
+            </div>
+            <div class="p-4 bg-light-secondary dark:bg-dark-secondary rounded transition-colors duration-300">
+                <h4 class="text-sm text-gray-600 dark:text-gray-400">SALES</h4>
+                <p class="text-2xl font-semibold">$103,430</p>
+                <span class="text-sm text-green-400">+5% than last month</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-8">
+            <div class="p-4 bg-light-secondary dark:bg-dark-secondary rounded transition-colors duration-300">
+                <h4 class="text-lg font-semibold mb-4">Platform Settings</h4>
+                <div class="space-y-4">
+                    <div>
+                        <h5 class="text-sm text-gray-600 dark:text-gray-400 font-medium">Account</h5>
+                        <div class="flex items-center justify-between">
+                            <span class="flex-1">Email me when someone follows me</span>
+                            <input type="checkbox" class="form-checkbox bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-green-500">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex-1">Email me when someone answers on my post</span>
+                            <input type="checkbox" class="form-checkbox bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-green-500" checked>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex-1">Email me when someone mentions me</span>
+                            <input type="checkbox" class="form-checkbox bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-green-500" checked>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="text-sm text-gray-600 dark:text-gray-400 font-medium">Application</h5>
+                        <div class="flex items-center justify-between">
+                            <span class="flex-1">New launches and projects</span>
+                            <input type="checkbox" class="form-checkbox bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-green-500">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex-1">Monthly product updates</span>
+                            <input type="checkbox" class="form-checkbox bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-green-500">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex-1">Subscribe to newsletter</span>
+                            <input type="checkbox" class="form-checkbox bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-green-500" checked>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="p-4 bg-light-secondary dark:bg-dark-secondary rounded transition-colors duration-300 max-w-md mx-auto">
+                <h4 class="text-lg md:text-xl font-semibold mb-4">Profile Information</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    Hi, I'm Alec Thompson. Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
+                </p>
+                <ul class="text-sm space-y-2">
+                    <li><strong>Full Name:</strong> Alec M. Thompson</li>
+                    <li><strong>Mobile:</strong> (44) 123 1234 123</li>
+                    <li><strong>Email:</strong> <a href="mailto:alecthompson@mail.com" class="text-blue-400">alecthompson@mail.com</a></li>
+                    <li><strong>Location:</strong> USA</li>
+                    <li><strong>Social:</strong> 
+                        <a href="#" class="text-blue-400">Twitter</a>, 
+                        <a href="#" class="text-blue-400">LinkedIn</a>, 
+                        <a href="#" class="text-blue-400">Instagram</a>
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="p-4 bg-light-secondary dark:bg-dark-secondary rounded transition-colors duration-300">
+                <h4 class="text-lg font-semibold mb-4">Conversations</h4>
+                <ul class="space-y-4">
+                    <li class="flex justify-between items-center">
+                        <div class="flex-1">
+                            <p class="font-medium">Sophie B.</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Hi! I need more information...</p>
+                        </div>
+                        <button class="text-blue-400">Reply</button>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <div class="flex-1">
+                            <p class="font-medium">Anne Marie</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Awesome work, can you...</p>
+                        </div>
+                        <button class="text-blue-400">Reply</button>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <div class="flex-1">
+                            <p class="font-medium">Ivanna</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">About files I can...</p>
+                        </div>
+                        <button class="text-blue-400">Reply</button>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <div class="flex-1">
+                            <p class="font-medium">Peterson</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Have a great afternoon...</p>
+                        </div>
+                        <button class="text-blue-400">Reply</button>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <div class="flex-1">
+                            <p class="font-medium">Nick Daniel</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Hi! I need more information...</p>
+                        </div>
+                        <button class="text-blue-400">Reply</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 items-start mb-8">
+            <div class="w-full md:w-2/3 bg-light-secondary dark:bg-dark-secondary p-6 rounded transition-colors duration-300">
+                <h3 class="text-lg font-semibold mb-2">Sales Overview</h3>
+                <p class="text-sm text-green-400 mb-4">+4% more in 2022</p>
+                <canvas id="salesChart" class="w-full h-64"></canvas>
+            </div>
+            <div class="w-full md:w-1/3 flex items-center justify-center">
+                <img src="images.jpeg" alt="Sales Overview" class="w-full h-full object-cover rounded">
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 mb-8">
+            <div class="bg-light-secondary dark:bg-dark-secondary p-6 rounded w-full transition-colors duration-300">
+                <h3 class="text-lg font-semibold mb-4">Sales by Country</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-200 dark:border-gray-700">
+                                <th class="pb-2 text-left">Country</th>
+                                <th class="pb-2 text-left">Sales</th>
+                                <th class="pb-2 text-left">Value</th>
+                                <th class="pb-2 text-left">Bounce</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200 dark:border-gray-700">
+                                <td class="py-2 flex items-center gap-2"><span>🇺🇸</span> United States</td>
+                                <td class="py-2">2,500</td>
+                                <td class="py-2">$230,900</td>
+                                <td class="py-2">29.9%</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 dark:border-gray-700">
+                                <td class="py-2 flex items-center gap-2"><span>🇩🇪</span> Germany</td>
+                                <td class="py-2">3,900</td>
+                                <td class="py-2">$440,000</td>
+                                <td class="py-2">40.22%</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 dark:border-gray-700">
+                                <td class="py-2 flex items-center gap-2"><span>🇬🇧</span> Great Britain</td>
+                                <td class="py-2">1,400</td>
+                                <td class="py-2">$190,700</td>
+                                <td class="py-2">23.44%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 flex items-center gap-2"><span>🇧🇷</span> Brazil</td>
+                                <td class="py-2">562</td>
+                                <td class="py-2">$143,960</td>
+                                <td class="py-2">32.14%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+            <div class="bg-light-secondary dark:bg-dark-secondary p-6 rounded w-1/2 ml-4 transition-colors duration-300">
+                <h4 class="text-lg font-semibold mb-4">Categories</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="bg-blue-500 text-white p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17.25h4.5M12 3v1.5m6.364 1.636l-1.061 1.06M21 12h-1.5M12 21v-1.5m-6.364-1.636l1.061-1.06M3 12h1.5M4.875 5.25h14.25a1.5 1.5 0 011.5 1.5v10.5a1.5 1.5 0 01-1.5 1.5H4.875a1.5 1.5 0 01-1.5-1.5V6.75a1.5 1.5 0 011.5-1.5z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class="text-sm font-medium">Devices</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">250 in stock, 346+ sold</p>
+                            </div>
+                        </div>
+                        <a href="#" class="text-blue-400">&gt;</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="bg-green-500 text-white p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.25 12.75v-6m1.5 0h3.75m-9 9H4.875a1.5 1.5 0 01-1.5-1.5v-1.125c0-.66.425-1.175 1.038-1.392l8.137-3.041c.611-.23 1.325.017 1.825.504l3.164 3.164a1.5 1.5 0 01.504 1.825l-3.041 8.137c-.217.613-.732 1.038-1.392 1.038H9a1.5 1.5 0 01-1.5-1.5V12.75z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class="text-sm font-medium">Tickets</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">123 closed, 15 open</p>
+                            </div>
+                        </div>
+                        <a href="#" class="text-blue-400">&gt;</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="bg-red-500 text-white p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.586 4.586a2 2 0 012.828 0l6 6a2 2 0 010 2.828l-6 6a2 2 0 01-2.828 0l-6-6a2 2 0 010-2.828l6-6z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class="text-sm font-medium">Error Logs</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">1 is active, 40 closed</p>
+                            </div>
+                        </div>
+                        <a href="#" class="text-blue-400">&gt;</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="bg-yellow-500 text-white p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 19a3.5 3.5 0 01-1.25-2.829l.25-1.5A2 2 0 015.994 13H18.006a2 2 0 011.874 1.671l.25 1.5a3.5 3.5 0 01-1.25 2.829M8 10a3 3 0 116 0M8 10a3 3 0 00-6 0m6 0a3 3 0 00-6 0m6 0h6" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class="text-sm font-medium">Happy Users</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">+430</p>
+                            </div>
+                        </div>
+                        <a href="#" class="text-blue-400">&gt;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            updateThemeIcon();
+        });
+
+        function updateThemeIcon() {
+            const isDark = html.classList.contains('dark');
+            themeToggle.innerHTML = isDark
+                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>';
+        }
+
+        // Initialize theme icon
+        updateThemeIcon();
+
+        // Chart.js configuration
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    borderColor: 'rgba(14, 165, 233, 1)',
+                    backgroundColor: 'rgba(14, 165, 233, 0.2)',
+                    tension: 0.4,
+                }],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: 'rgba(0, 0, 0, 0.7)',
+                        },
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return `Sales: ${context.raw}`;
+                            },
+                        },
+                    },
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'rgba(0, 0, 0, 0.7)',
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)',
+                        },
+                    },
+                    y: {
+                        ticks: {
+                            color: 'rgba(0, 0, 0, 0.7)',
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)',
+                        },
+                    },
+                },
+            },
+        });
+
+        // Update chart colors on theme change
+        const updateChartColors = () => {
+            const isDark = html.classList.contains('dark');
+            const textColor = isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+            const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+
+            chart.options.plugins.legend.labels.color = textColor;
+            chart.options.scales.x.ticks.color = textColor;
+            chart.options.scales.y.ticks.color = textColor;
+            chart.options.scales.x.grid.color = gridColor;
+            chart.options.scales.y.grid.color = gridColor;
+
+            chart.update();
+        };
+
+        themeToggle.addEventListener('click', updateChartColors);
+
+        // Initial chart color update
+        updateChartColors();
+    </script>
+</body>
+</html>
