@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Argon Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
@@ -74,7 +74,8 @@
                         active:bg-[#5e72e3]
                         dark:hover:bg-[#112f55]  dark:active:bg-[#112f55]"><span class="material-icons-sharp text-pink-900">
                         language
-                        </span>RTL</a></li>
+                        </span>RTL</a>
+                    </li>
                 </ul>
                 <h3 class="mt-6 mb-4 text-xs font-bold uppercase text-gray-500 dark:text-gray-400 px-6">Account Pages</h3>
                 <ul class="space-y-2">
@@ -95,7 +96,8 @@
                         active:bg-[#5e72e3]
                         dark:hover:bg-[#112f55]  dark:active:bg-[#112f55]"><span class="material-icons-sharp text-blue-400">
                         logout
-                        </span>Sign Up</a></li>
+                        </span>Sign Up</a>
+                    </li>
                 </ul>
             </nav>
             <div class="absolute bottom-5 left-0 w-full space-y-2 px-6 py-3">
@@ -126,10 +128,7 @@
             </div>
             <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto mt-4 md:mt-0">
                 <div class="relative w-full md:w-64">
-                    <input 
-                        type="search" 
-                        placeholder="Type here..." 
-                        class="w-full md:w-64 p-2 pl-8 bg-light-secondary dark:bg-dark-secondary border border-gray-300 rounded-3xl dark:border-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300 focus:ring focus:ring-blue-300 dark:focus:ring-blue-800">
+                    <input type="search" placeholder="Type here..." class="w-full md:w-64 p-2 pl-8 bg-light-secondary dark:bg-dark-secondary border border-gray-300 rounded-3xl dark:border-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300 focus:ring focus:ring-blue-300 dark:focus:ring-blue-800">
                 </div>
                 <button 
                     id="themeToggle" 
@@ -187,17 +186,16 @@
                     </div>
                 </div>
                 <script>
-    const swiper = new Swiper('.swiper-container', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        loop: true,
-    });
+                    const swiper = new Swiper('.swiper-container', {
+                        navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                        },
+                    loop: true,
+                    });
                 </script>
             </div>
         </div>
-
         <div class="flex flex-col md:flex-row gap-4 mb-8">
             <div class="bg-light-secondary dark:bg-dark-secondary p-6 rounded w-full md:w-12/2 transition-colors duration-300 rounded-2xl">
                 <h3 class="text-lg font-semibold mb-4">Sales by Country</h3>
@@ -384,19 +382,21 @@
                             <span class="flex-1">Email me when someone answers on my post</span>
                             <div class="relative w-9 h-5">
                                 <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer peer" type="checkbox">
-                                <div class="w-full h-full bg-gray-400 rounded-full transition-colors duration-300 peer-checked:bg-blue-500"></div>
-                                <div class="absolute top-1/2 left-0 w-5 h-5 bg-white rounded-full shadow transform -translate-y-1/2 transition-transform duration-300 peer-checked:translate-x-5"></div>
+                                <div class="w-full h-full bg-gray-400 rounded-full transition-colors duration-300 peer-checked:bg-blue-500">
+                                </div>
+                                <div class="absolute top-1/2 left-0 w-5 h-5 bg-white rounded-full shadow transform -translate-y-1/2 transition-transform duration-300 peer-checked:translate-x-5">
+                                </div>
                             </div>
-                            
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="flex-1">Email me when someone mentions me</span>
                             <div class="relative w-9 h-5">
                                 <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer peer" type="checkbox">
-                                <div class="w-full h-full bg-gray-400 rounded-full transition-colors duration-300 peer-checked:bg-blue-500"></div>
-                                <div class="absolute top-1/2 left-0 w-5 h-5 bg-white rounded-full shadow transform -translate-y-1/2 transition-transform duration-300 peer-checked:translate-x-5"></div>
+                                <div class="w-full h-full bg-gray-400 rounded-full transition-colors duration-300 peer-checked:bg-blue-500">
+                                </div>
+                                <div class="absolute top-1/2 left-0 w-5 h-5 bg-white rounded-full shadow transform -translate-y-1/2 transition-transform duration-300 peer-checked:translate-x-5">
+                                </div>
                             </div>
-                            
                         </div>
                     </div>
                     <div>
